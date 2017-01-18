@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>tabe.html</title>
+
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta name="content-type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script src="../../js/jquery-1.4.2.js"></script>
+</head>
+<script type="text/javascript">
+	/**
+	 * $(document)=$()
+	 */
+	$(document).ready(function() {
+		$("#t1 tr:even").css("background", "red");
+		$("#t1 tr:odd").css("background", "green");
+		$("#t2 tr td:first-child").css("background", "red");
+		//遍历tr
+		$("#t3 tr").each(function() {
+			//查找每个tr的子元素
+			$(this).children(":even").css("background", "red");
+			$(this).children(":odd").css("background", "green		");
+		});
+	});
+</script>
+<body>
+	This is my HTML page.
+	<br>
+	<table id="t1">
+		<tr>
+			<td>afds</td>
+			<td>asdf</td>
+		</tr>
+		<tr>
+			<td>asdf</td>
+			<td>afds</td>
+		</tr>
+		<tr>
+			<td>afds</td>
+			<td>asfd</td>
+		</tr>
+		<tr>
+			<td>asfd</td>
+			<td>afds</td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<br>
+	<table id="t2">
+		<tr>
+			<td>id</td>
+			<td>name</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>aaa</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>bbb</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>ccc</td>
+		</tr>
+	</table>
+
+	<table id="t3">
+		<tr>
+			<td>id</td>
+			<td>name</td>
+			<td>sex</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>aaa</td>
+			<td>aaa</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>bbb</td>
+			<td>aaa</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>ccc</td>
+			<td>aaa</td>
+		</tr>
+	</table>
+</body>
+</html>
