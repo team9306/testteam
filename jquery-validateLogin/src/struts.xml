@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 开启开发模式，详细错误提示 -->
+	<constant name="struts.devMode" value="true" />
+	<!-- 修改配置文件后，自动重新加载 -->
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<!--<!- 配置拦截器 ->
+	<package name="my-default" extends="struts-default">
+		<interceptors>
+			<!- 配置未登录进行操作的拦截器 ->
+			<interceptor name="MyInterceptor" class="cn.liandi.interceptor.Interceptor">
+				<param name="param">测试参数</param>
+			</interceptor>
+			<!- 重新封装一个默认的拦截器栈->
+			<interceptor-stack name="myDefaultStack">
+				<interceptor-ref name="Interceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<!- 为这个包设置默认的拦截器栈 ->
+		<default-interceptor-ref name="myDefaultStack" />
+		<!- 设置全局的返回值 ->
+		<global-results>
+			<result name="login">/index.jsp</result>
+		</global-results>
+	</package> -->
+	
+	<!--用户-->
+	<package name="user" extends="struts-default" namespace="/">
+		<!-- 用户登录-->
+		<action name="login" class="cn.liandi.action.UserAction"  method="userLogin">
+			<result name="success">/pages/loginSuccess.jsp</result>
+			<result name="error">/pages/loginError.jsp</result>
+		</action>
+		<!-- 用户注册-->
+		<action name="register" class="cn.liandi.action.UserAction"  method="userRegister">
+			<result name="success">/pages/registerSuccess.jsp</result>
+			<result name="input">/pages/register.jsp</result>
+		</action>
+		<!-- 用户信息查询-->
+		<action name="userSelect" class="cn.liandi.action.UserAction"  method="userSelect">
+			<result name="success">/pages/userinfo.jsp</result>
+			<result name="input">/pages/userinfoError.jsp</result>
+		</action>
+		<!-- 用户信息更改-->
+		<action name="editUser" class="cn.liandi.action.UserAction"  method="editUser">
+			<result name="success">/pages/updateSuccess.jsp</result>
+			<result name="error">/pages/updateError.jsp</result>
+		</action>
+	</package>
+	
+	
+	<package name="admin" extends="struts-default" namespace="/">
+		<!-- 管理员登录-->
+		<action name="adminLogin" class="cn.liandi.action.AdminAction"  method="adminLogin">
+			<result name="success">/pages/admins/loginSuccess.jsp</result>
+			<result name="error">/pages/admins/loginError.jsp</result>
+		</action>
+		
+		<!-- 所有用户信息查询-->
+		<action name="allUserSelect" class="cn.liandi.action.AdminAction"  method="allUserSelect">
+			<result name="success">/pages/admins/userlist.jsp</result>
+			<result name="input">/pages/admins/userinfoError.jsp</result>
+		</action>
+		<!-- 用户信息更改-->
+		<action name="adminEditUser" class="cn.liandi.action.UserAction"  method="editUser">
+			<result name="success">/pages/admins/updateSuccess.jsp</result>
+			<result name="error">/pages/admins/updateError.jsp</result>
+		</action>
+		<!-- 用户信息更改-->
+		<action name="updateUser" class="cn.liandi.action.AdminAction"  method="selectUser">
+			<result name="success">/pages/admins/editUser.jsp</result>
+			<result name="error">/pages/userinfoError.jsp</result>
+		</action>
+		<!-- 用户信息删除-->
+		<action name="deleteUser" class="cn.liandi.action.AdminAction"  method="deleteUser">
+			<result name="success">/pages/admins/deleteSuccess.jsp</result>
+			<result name="input">/pages/admins/deleteError.jsp</result>
+		</action>
+	</package>
+	
+</struts>    
